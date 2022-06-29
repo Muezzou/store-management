@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  myIdStore = "ijpxNJLM732vm8AeajMR";
+  
   constructor() { }
 
   ngOnInit(): void {

@@ -1,0 +1,109 @@
+<form *ngIf="data" (ngSubmit)="onSubmit()" #productForm="ngForm">
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <div class="card-panel">
+    
+          <!-- Product title -->
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title"
+                    required
+                    pattern="^[a-zA-Z0-9àéèòìù\s]{1,50}$"
+                   [(ngModel)]="data.title" name="title"
+                   #title="ngModel">
+    
+            <div [hidden]="title.valid || title.pristine"
+                  class="card-panel red accent-1">
+                  Product title required (1-25).
+            </div>
+          </div>
+    
+          <!-- Product category -->
+          <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category"
+                    required
+                    pattern="^[a-zA-Z0-9àéèòìù]{1,25}$"
+                   [(ngModel)]="data.category" name="category"
+                   #category="ngModel">
+             <div [hidden]="category.valid || category.pristine"
+                   class="card-panel red accent-1">
+                   Product category required.
+             </div>
+          </div>
+    
+          <!-- Product price  -->
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price"
+                    required
+                    pattern="^[0-9]{1,2}$"
+                   [(ngModel)]="data.price" name="price"
+                   #price="ngModel">
+             <div [hidden]="price.valid || price.pristine"
+                   class="card-panel red accent-1">
+                   Product price required.
+             </div>
+          </div>
+
+          <!-- Product employee  -->
+          <div class="form-group">
+            <label for="employee">Employee</label>
+            <input type="text" class="form-control" id="employee"
+                    required
+                    pattern="^[a-zA-Zàéèòìù\s]{1,25}$"
+                   [(ngModel)]="data.employee" name="employee"
+                   #employee="ngModel">
+             <div [hidden]="employee.valid || employee.pristine"
+                   class="card-panel red accent-1">
+                   Product employee required.
+             </div>
+          </div>
+
+          <!-- Product description  -->
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control materialize-textarea" id="description"
+                    required
+                    pattern="^[a-zA-Z0-9àéèòìù\s]{1,100}$"
+                   [(ngModel)]="data.description" name="description"
+                   #description="ngModel"></textarea>
+             <div [hidden]="description.valid || description.pristine"
+                   class="card-panel red accent-1">
+                   Product description required.
+             </div>
+          </div>
+    
+          <!-- Pokemon types 
+          <form class="form-group">
+            <label for="types">Types</label>
+            <p *ngFor="let type of types">
+              <label>
+                <input type="text"
+                  class="filled-in"
+                  id="{{ type }}"
+                  [value]="type"
+                  [checked]="hasType(type)"
+                  [disabled]="!isTypesValid(type)"
+                  (change)="selectType($event, type)"/>
+                <span [attr.for]="type">
+                  <div class="{{ type | pokemonTypeColor }}">
+                    {{ type }}
+                  </div>
+                </span>
+              </label>
+            </p>
+          </form>-->
+    
+          <!-- Submit button -->
+          <div class="divider"></div>
+          <div class="section center">
+            <button type="submit"
+              class="waves-effect waves-light btn"
+              [disabled]="!productForm.form.valid">
+              Valider</button>
+          </div>
+        </div>
+    </div>
+</div>
+</form>
