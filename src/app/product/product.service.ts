@@ -9,7 +9,7 @@ export class ProductService {
   constructor( private httpClient: HttpClient) { }
 
   getProductList(): Observable<Product[]>{
-    return this.httpClient.get<Product[]>('http://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products').pipe(
+    return this.httpClient.get<Product[]>('https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products').pipe(
       tap((response) => this.log("resultat: " + response)),
       catchError(error => this.handleError(error, [], "getProductList"))
       );
@@ -17,7 +17,7 @@ export class ProductService {
 
 
   getProductById(productId: string): Observable<Data|undefined>{
-    return this.httpClient.get<Data>(`http://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products/${productId}`).pipe(
+    return this.httpClient.get<Data>(`https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products/${productId}`).pipe(
     tap((data) => this.log(data)),
       catchError((error) => this.handleError(error, undefined, "getProductById"))
     );
@@ -30,14 +30,14 @@ export class ProductService {
       }),
       responseType: 'text' as 'text'
     };
-    return this.httpClient.post('http://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products', data, options).pipe(
+    return this.httpClient.post('https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products', data, options).pipe(
       tap((id) => this.log(id)),
       catchError((error) => this.handleError(error, null, "addProdduct"))
     );
   }
 
   deleteProductById(productId: string): Observable<null>{
-      return this.httpClient.delete(`http://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products/${productId}`).pipe(
+      return this.httpClient.delete(`https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products/${productId}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, null, "deleteProductById"))
     );
@@ -48,7 +48,7 @@ export class ProductService {
     if (value.length <=1){
       return of([]);
     } 
-    return this.httpClient.get<Product[]>(`http://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products/`).pipe(
+    return this.httpClient.get<Product[]>(`https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products/`).pipe(
       map( result => result.filter(product => product.data.title.includes(value))),
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, [], "searchProduct"))
