@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '../store';
-import { StoreService } from '../store.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActiveDataPoint } from 'chart.js';
+import { Store } from '../models/store';
+import { StoreService } from '../service/store.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,15 +11,15 @@ import { StoreService } from '../store.service';
 })
 export class NavbarComponent implements OnInit {
 
-  private idStore: string = "ijpxNJLM732vm8AeajMR";
 
-  store!: Store;
+  @Input() store!: Store;
 
-  constructor(private storeService: StoreService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.storeService.getStoreById(this.idStore)
-    .subscribe(store => this.store = store)
   }
 
+  getClassActiveLink(value: string): boolean{
+    return this.router.url == value ? true : false;
+  }
 }

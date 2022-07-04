@@ -30,7 +30,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["node_modules/chart.js/dist/chart.min.js"], 
+            "allowedCommonJsDependencies": ["chart.js"]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,6 @@
+<div *ngIf="product">
+    <div *ngIf="data">
+        <h2 class="header center"> edit {{product.data.title}}</h2>
+        <app-product-form [data]="data"></app-product-form>
+    </div>    
+</div>

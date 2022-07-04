@@ -1,2 +1,5 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div *ngIf="store" >
+    <app-navbar [store]="store"></app-navbar>
+    <router-outlet></router-outlet>
+</div>
+    

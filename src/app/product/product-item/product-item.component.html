@@ -3,11 +3,12 @@
         <h2 class="header center">{{ product.data.title | titlecase }}</h2>
         <div class="card horizontal hoverable">
             <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1647532198028-0e14fe8ea54e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
+                <img  class="responsive-img" src="./../../../assets/picture1.jpg"
                     alt="">
             </div>
             <div class="card-stacked">
                 <div class="card-content">
+                    <!---->    
                     <table class="bordered striped">
                         <tbody>
                             <tr>
@@ -31,20 +32,51 @@
                                 <td><em>{{ product.data.employee }}</em></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table>       
+                    <!---->
+                    
                 </div>
                 <div class="card-action">
-                    <a>Reviews</a>
-                    <a (click)="goToProductList()">Retour</a>
-                    <a (click)="deleteProduct(product)">Delete</a>
+                    <a (click)="goToProductList()" class="card-link-action">Retour</a>
+                    <a (click)="editProduct(product)" class="card-link-action">Edit</a>
+                    <a (click)="deleteProduct(product)" class="card-link-action">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="card horizontal hoverable">
+            <div class="card-stacked">
+                <div class="card-content">  
+                    <div #reviews class="col s12">
+                        <span class="title-card">Reviews</span>
+                        <div class="row">
+                            <input #newReview type="text"placeholder="add a review" name="newReview" class="col s11">
+                            <button class="waves-effect waves-light btn col s1" (click)="addReview(newReview.value); newReview.value=''">Send</button>
+                        </div>
+                       
+                        <ul *ngFor="let review of product.data.reviews" class="collection">
+                            <li class="collection-item avatar">
+                            <img src="./../../../assets/avatar.png" alt="" class="circle avatar-img">
+                            <div class="row">
+                                <div class="col s11">
+                                    {{review}} 
+                                    <button class="btn-flat trash-button" (click)="deleteReview(review);"><i class="material-icons">delete</i></button>
+                                </div>
+                             
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div *ngIf="product == undefined" class='center'>
-    <h4 class="center">No product !</h4>
-    <a routerLink="/products" class="waves-effect waves-teal btn-flat">
-        Go back
-    </a>
+    <app-loader></app-loader>
+
+    <div>
+        <a routerLink="/products" class="waves-effect waves-teal btn-flat">
+            Go back
+        </a>
+    </div>
 </div>

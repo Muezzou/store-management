@@ -3,25 +3,25 @@ import { ProductService } from './../product.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ProductFormComponent } from './product-form.component';
+import { SearchProductComponent } from './search-product.component';
 
-describe('ProductFormComponent', () => {
-  let component: ProductFormComponent;
-  let fixture: ComponentFixture<ProductFormComponent>;
-  let testBedService: ProductService;
+describe('SearchProductComponent', () => {
+  let component: SearchProductComponent;
+  let fixture: ComponentFixture<SearchProductComponent>;
+  let testBedService : ProductService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductFormComponent ],
+      declarations: [ SearchProductComponent ],
       imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [ProductService]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProductFormComponent);
+    fixture = TestBed.createComponent(SearchProductComponent);
+    testBedService = TestBed.inject(ProductService);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    testBedService = TestBed.inject(ProductService);
   });
 
   it('should create', () => {

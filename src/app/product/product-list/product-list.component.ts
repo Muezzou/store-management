@@ -11,6 +11,8 @@ import { ProductService } from '../product.service';
 export class ProductListComponent implements OnInit {
 
   productList: Product[] = [];
+
+  gridView: boolean = true
   
   constructor(private router: Router, 
               private productService: ProductService) { }
@@ -22,5 +24,9 @@ export class ProductListComponent implements OnInit {
 
   goToProduct(product: Product){
     this.router.navigate(['products', product.id]);
+  }
+
+  changeView(){
+    this.gridView = (this.gridView ? false : true);
   }
 }

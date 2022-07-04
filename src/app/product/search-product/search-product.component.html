@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="card">
+            <div class="card-content">
+                <div class="input-field">
+                    <input #searchInput 
+                    type="text"
+                    (keyup)="search(searchInput.value)"
+                    placeholder="Search a product..."/>
+                    <div class="collection">
+                        <a *ngFor="let product of products$ | async"
+                        (click)="goToProduct(product)"
+                        class="collection-item">
+                            {{product.data.title }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

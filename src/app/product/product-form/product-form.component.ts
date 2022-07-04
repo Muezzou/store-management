@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Data } from '../product';
 import { ProductService } from '../product.service';
 
@@ -12,14 +12,29 @@ export class ProductFormComponent implements OnInit {
 
   @Input() data!: Data;
 
-  constructor(private router: Router, private productService: ProductService) { }
+  constructor(private router: Router, 
+              private route: ActivatedRoute,
+              private productService: ProductService) { }
 
   ngOnInit(): void {
 
   }
 
   onSubmit(){
+    const productId: string|null = this.route.snapshot.paramMap.get('id');
+    if(productId){
+      this.productService.addProduct(this.data)
+    .subscribe((id)=>{
+        if(id) { this.productService.deleteProductById(productId).subscribe(
+          () => this.router.navigate(['/products', id])
+        )
+          }
+      });
+    } else {
     this.productService.addProduct(this.data)
-    .subscribe((id)=>this.router.navigate(['/products', id]))
+    .subscribe((id)=>{
+        if(id) {this.router.navigate(['/products', id]);}
+      })
+    }
   }
 }
