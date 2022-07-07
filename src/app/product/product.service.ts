@@ -49,7 +49,7 @@ export class ProductService {
       return of([]);
     } 
     return this.httpClient.get<Product[]>(`https://us-central1-test-b7665.cloudfunctions.net/api/stores/ijpxNJLM732vm8AeajMR/products/`).pipe(
-      map( result => result.filter(product => product.data.title.includes(value))),
+      map( result => result.filter(product => product.data.title.toLowerCase().includes(value.toLowerCase()))),
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, [], "searchProduct"))
     )
